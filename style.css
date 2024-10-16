@@ -1,75 +1,121 @@
-/* General Styles */
-body {
+/* Reset Styles */
+* {
     margin: 0;
-    font-family: 'Arial', sans-serif;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #0e0e0e;
     color: #ffffff;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 /* Intro Section */
 #intro {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, #1a1a1a, #0e0e0e);
+    background: linear-gradient(135deg, #1a1a1a, #0e0e0e);
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: introAnimation 3s forwards;
+    z-index: 999;
+    animation: introFadeOut 2s forwards 3s;
 }
 
 #intro h1 {
     font-size: 3em;
     opacity: 0;
-    animation: textFadeIn 2s forwards 1s;
+    animation: textFadeIn 2s forwards;
 }
 
 /* Main Content */
 #main-content {
+    display: none;
     padding: 50px;
+    animation: contentFadeIn 1s forwards;
 }
 
-.hidden {
-    display: none;
+header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+header h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+header h1 {
+    font-size: 3em;
 }
 
 /* Projects Section */
-.projects {
-    display: flex;
-    justify-content: space-around;
+#projects {
     margin-top: 30px;
+}
+
+#projects h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.project-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .project-card {
     background-color: #1a1a1a;
     width: 30%;
+    margin-bottom: 20px;
     padding: 20px;
     text-align: center;
     border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: transform 0.3s, background-color 0.3s;
 }
 
 .project-card:hover {
     transform: scale(1.05);
+    background-color: #292929;
 }
 
 .project-card img {
     width: 100px;
     height: 100px;
+    margin-bottom: 15px;
+}
+
+.project-card h3 {
+    font-size: 1.5em;
 }
 
 /* Animations */
-@keyframes introAnimation {
-    to {
-        opacity: 0;
-        visibility: hidden;
-    }
+@keyframes textFadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes textFadeIn {
-    to {
-        opacity: 1;
+@keyframes introFadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes contentFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .project-card {
+        width: 100%;
     }
 }
